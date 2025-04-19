@@ -30,6 +30,22 @@ var uri string = "at://did:plc:scewmn2pl3oz36mxme2b6czz"
 err := aturi.Validate(uri)
 ```
 
+### Split Example
+
+You can split an AT-URI into its components with code similar to the following:
+
+```golang
+import "github.com/reiver/go-aturi"
+
+// ...
+
+var uri string = "at://did:plc:scewmn2pl3oz36mxme2b6czz"
+
+// ...
+
+authority, collection, rkey, query, fragment, err := aturi.Split(uri)
+```
+
 ## Import
 
 To import package **aturi** use `import` code like the follownig:
