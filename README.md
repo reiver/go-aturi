@@ -2,7 +2,8 @@
 
 Package **aturi** provides tools for working with AT-URIs, for the Go programming language.
 
-AT-URIs are used by the Bluesky network and its AT-protocol.
+AT-URIs are used by the Bluesky network and its AT-protocol, and are defined at:
+https://atproto.com/specs/at-uri-scheme
 
 ## Documention
 
