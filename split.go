@@ -13,7 +13,7 @@ import (
 //
 //	var uri string = "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y"
 //	
-//	authority, collection, rkey, query, fragment, err := aturl.Split(uri)
+//	authority, collection, rkey, query, fragment, err := aturi.Split(uri)
 //	if nil != err{
 //		return err
 //	}
