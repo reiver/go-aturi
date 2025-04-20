@@ -9,12 +9,14 @@ import (
 
 // Split returns the 'authority', 'collection', 'rkey', 'query', and 'fragment' of at AT-URI.
 //
+// A 'collection' is an NSID (Namespaced Identifier).
+//
 // For example:
 //
 //	var uri string = "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y"
 //	
 //	authority, collection, rkey, query, fragment, err := aturi.Split(uri)
-//	if nil != err{
+//	if nil != err {
 //		return err
 //	}
 //	
