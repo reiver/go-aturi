@@ -6,21 +6,14 @@ import (
 
 // Join returns the AT-URI made up of the provided 'authority', 'collection', 'rkey', 'query', and 'fragment'.
 func Join(authority string, collection string, rkey string, query string, fragment string) string {
-	if "" == authority && "" == collection && "" == rkey && "" == query && "" == fragment {
-		return "at:///"
-	}
-
 	var buffer [256]byte
 	var p []byte = buffer[0:0]
 
-	p = append(p, "at:"...)
-
-	if "" != authority || "" != collection || "" != rkey {
-		p = append(p, "//"...)
-	}
+	// The URI scheme is at, and an authority part preceded with double slashes is always required, so the URI always starts at://
+	p = append(p, "at://"...)
 
 	if "" != authority {
-		p = append(p, encodeSolidus(encodeQuestionMark(encodeNumberSign(encodePercentSign(authority))))...)
+		p = append(p, encodeAtSign(encodeSolidus(encodeQuestionMark(encodeNumberSign(encodePercentSign(authority)))))...)
 	}
 
 	if  "" != collection || "" != rkey {
@@ -47,6 +40,10 @@ func Join(authority string, collection string, rkey string, query string, fragme
 	}
 
 	return string(p)
+}
+
+func encodeAtSign(str string) string {
+	return strings.ReplaceAll(str,  "@", "%40")
 }
 
 func encodeNumberSign(str string) string {

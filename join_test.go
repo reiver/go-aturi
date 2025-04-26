@@ -19,7 +19,7 @@ func TestJoin(t *testing.T) {
 		Expected string
 	}{
 		{
-			Expected: "at:///",
+			Expected: "at://",
 		},
 
 
@@ -33,12 +33,12 @@ func TestJoin(t *testing.T) {
 			Expected: "at:////123",
 		},
 		{
-			Query:        "a=bb&ccc=dddd",
-			Expected: "at:?a=bb&ccc=dddd",
+			Query:          "a=bb&ccc=dddd",
+			Expected: "at://?a=bb&ccc=dddd",
 		},
 		{
-			Fragment:     "some",
-			Expected: "at:#some",
+			Fragment:       "some",
+			Expected: "at://#some",
 		},
 
 
