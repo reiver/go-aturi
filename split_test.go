@@ -28,6 +28,25 @@ func TestSplit(t *testing.T) {
 
 
 		{
+                        URI:          "at://1%2F2",
+                        ExpectedAuthority: "1/2",
+		},
+		{
+                        URI:          "at://a%3Fb",
+                        ExpectedAuthority: "a?b",
+		},
+		{
+                        URI:          "at://x%23y",
+                        ExpectedAuthority: "x#y",
+		},
+		{
+                        URI:          "at://j%25k",
+                        ExpectedAuthority: "j%k",
+		},
+
+
+
+		{
 			URI:          "AT://localhost",
 			ExpectedAuthority: "localhost",
 		},

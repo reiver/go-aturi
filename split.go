@@ -1,6 +1,7 @@
 package aturi
 
 import (
+	gourl "net/url"
 	"strings"
 
 	"github.com/reiver/go-erorr"
@@ -88,6 +89,14 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 			if strings.Contains(authority, disallowed) {
 				return "", "", "", "", "", erorr.Errorf("aturi: URI %q may not have an %q in its authority %q", uri, disallowed, authority)
 			}
+		}
+
+		{
+			unescaped, err := gourl.QueryUnescape(authority)
+			if nil != err {
+				return "", "", "", "", "", erorr.Errorf("aturi: problem hex-decoding URI %q: %w", uri, err)
+			}
+			authority = unescaped
 		}
 	}
 
