@@ -27,6 +27,7 @@ import (
 //	// query      == ""
 //	// fragment   == ""
 func Split(uri string) (authority string, collection string, rkey string, query string, fragment string, err error) {
+
 	if "" == uri {
 		return "", "", "", "", "", errEmptyURI
 	}
@@ -41,24 +42,42 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 		}
 	}
 
-
 	var str string = uri
+
 	{
-		const prefix string = "at://"
+		const prefix string = "at:"
 
 		var lenprefix int = len(prefix)
-		var lenuri int = len(uri)
-		if lenuri < lenprefix {
-			return "", "", "", "", "", erorr.Errorf("aturi: URI %q is not an at-uri because it does not begin with %q", uri, prefix)
+		var lenstr int = len(str)
+		if lenstr < lenprefix {
+			return "", "", "", "", "", erorr.Errorf("aturi: URI %q is not an AT-URI because it does not begin with %q", uri, prefix)
 		}
 
 		var beginning string = uri[:lenprefix]
 
 		if strings.ToLower(beginning) != prefix {
-			return "", "", "", "", "", erorr.Errorf("aturi: URI %q is not an at-uri because it does not begin with %q", uri, prefix)
+			return "", "", "", "", "", erorr.Errorf("aturi: URI %q is not an AT-URI because it does not begin with %q", uri, prefix)
 		}
 
-		str = str[len(prefix):]
+		str = str[lenprefix:]
+	}
+
+	{
+		const prefix string = "//"
+
+		var lenprefix int = len(prefix)
+		var lenstr int = len(str)
+		if lenstr < lenprefix {
+			return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q is not valid because it does not have %q after \"at:\" — too short", uri, prefix)
+		}
+
+		var beginning string = str[:lenprefix]
+
+		if beginning != prefix {
+			return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q is not valid because it does not have %q after \"at:\"", uri, prefix)
+		}
+
+		str = str[lenprefix:]
 	}
 
 	// authority
@@ -80,14 +99,14 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 		}
 
 		if "" == authority {
-			return "", "", "", "", "", erorr.Errorf("aturi: URI %q has an empty 'authority'", uri)
+			return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q has an empty 'authority'", uri)
 		}
 
 		{
 			const disallowed string = "@"
 
 			if strings.Contains(authority, disallowed) {
-				return "", "", "", "", "", erorr.Errorf("aturi: URI %q may not have an %q in its authority %q", uri, disallowed, authority)
+				return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q may not have an %q in its authority %q", uri, disallowed, authority)
 			}
 		}
 
@@ -98,6 +117,8 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 			}
 			authority = unescaped
 		}
+
+		authority = NormalizeAuthority(authority)
 	}
 
 	switch str {
@@ -131,7 +152,7 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 
 			if 0 < len(collection) {
 				if err := nsid.Validate(collection); nil != err {
-					return "", "", "", "", "", erorr.Errorf("aturi: URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
+					return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
 				}
 			}
 		}

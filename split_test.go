@@ -63,6 +63,10 @@ func TestSplit(t *testing.T) {
 			ExpectedAuthority: "apple.banana.cherry",
 		},
 		{
+			URI:          "AT://Hello.WORLD",
+			ExpectedAuthority: "hello.world",
+		},
+		{
 			URI:          "AT://xn--ugbaf6g.example",
 			ExpectedAuthority: "xn--ugbaf6g.example",
 		},
@@ -88,6 +92,10 @@ func TestSplit(t *testing.T) {
 		{
 			URI:          "At://apple.banana.cherry",
 			ExpectedAuthority: "apple.banana.cherry",
+		},
+		{
+			URI:          "At://Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "At://xn--ugbaf6g.example",
@@ -117,6 +125,10 @@ func TestSplit(t *testing.T) {
 			ExpectedAuthority: "apple.banana.cherry",
 		},
 		{
+			URI:          "aT://Hello.WORLD",
+			ExpectedAuthority: "hello.world",
+		},
+		{
 			URI:          "aT://xn--ugbaf6g.example",
 			ExpectedAuthority: "xn--ugbaf6g.example",
 		},
@@ -142,6 +154,10 @@ func TestSplit(t *testing.T) {
 		{
 			URI:          "at://apple.banana.cherry",
 			ExpectedAuthority: "apple.banana.cherry",
+		},
+		{
+			URI:          "at://Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example",
@@ -171,6 +187,10 @@ func TestSplit(t *testing.T) {
 			ExpectedAuthority: "apple.banana.cherry",
 		},
 		{
+			URI:          "at://Hello.WORLD/",
+			ExpectedAuthority: "hello.world",
+		},
+		{
 			URI:          "at://xn--ugbaf6g.example/",
 			ExpectedAuthority: "xn--ugbaf6g.example",
 		},
@@ -196,6 +216,10 @@ func TestSplit(t *testing.T) {
 		{
 			URI:          "at://apple.banana.cherry?",
 			ExpectedAuthority: "apple.banana.cherry",
+		},
+		{
+			URI:          "at://Hello.WORLD?",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example?",
@@ -225,6 +249,10 @@ func TestSplit(t *testing.T) {
 			ExpectedAuthority: "apple.banana.cherry",
 		},
 		{
+			URI:          "at://Hello.WORLD#",
+			ExpectedAuthority: "hello.world",
+		},
+		{
 			URI:          "at://xn--ugbaf6g.example#",
 			ExpectedAuthority: "xn--ugbaf6g.example",
 		},
@@ -250,6 +278,10 @@ func TestSplit(t *testing.T) {
 		{
 			URI:          "at://apple.banana.cherry/?",
 			ExpectedAuthority: "apple.banana.cherry",
+		},
+		{
+			URI:          "at://Hello.WORLD/?",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example/?",
@@ -279,6 +311,10 @@ func TestSplit(t *testing.T) {
 			ExpectedAuthority: "apple.banana.cherry",
 		},
 		{
+			URI:          "at://Hello.WORLD/#",
+			ExpectedAuthority: "hello.world",
+		},
+		{
 			URI:          "at://xn--ugbaf6g.example/#",
 			ExpectedAuthority: "xn--ugbaf6g.example",
 		},
@@ -304,6 +340,10 @@ func TestSplit(t *testing.T) {
 		{
 			URI:          "at://apple.banana.cherry?#",
 			ExpectedAuthority: "apple.banana.cherry",
+		},
+		{
+			URI:          "at://Hello.WORLD?#",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example?#",
@@ -333,6 +373,10 @@ func TestSplit(t *testing.T) {
 			ExpectedAuthority: "apple.banana.cherry",
 		},
 		{
+			URI:          "at://Hello.WORLD/?#",
+			ExpectedAuthority: "hello.world",
+		},
+		{
 			URI:          "at://xn--ugbaf6g.example/?#",
 			ExpectedAuthority: "xn--ugbaf6g.example",
 		},
@@ -344,326 +388,376 @@ func TestSplit(t *testing.T) {
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar",
+			URI:          "at://localhost/com.example.fooBar",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar",
+			URI:          "at://example.com/com.example.fooBar",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar",
+			URI:          "at://example.com./com.example.fooBar",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar",
+			URI:          "at://apple.banana.cherry/com.example.fooBar",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar",
+			URI:          "at://Hello.WORLD/com.example.fooBar",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/",
+			URI:          "at://localhost/com.example.fooBar/",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/",
+			URI:          "at://example.com/com.example.fooBar/",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/",
+			URI:          "at://example.com./com.example.fooBar/",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/",
+			URI:          "at://Hello.WORLD/com.example.fooBar/",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar?",
+			URI:          "at://localhost/com.example.fooBar?",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar?",
+			URI:          "at://example.com/com.example.fooBar?",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar?",
+			URI:          "at://example.com./com.example.fooBar?",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar?",
+			URI:          "at://apple.banana.cherry/com.example.fooBar?",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar?",
+			URI:          "at://Hello.WORLD/com.example.fooBar/?",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar?",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar?",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar?",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar#",
+			URI:          "at://localhost/com.example.fooBar#",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar#",
+			URI:          "at://example.com/com.example.fooBar#",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar#",
+			URI:          "at://example.com./com.example.fooBar#",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar#",
+			URI:          "at://apple.banana.cherry/com.example.fooBar#",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar#",
+			URI:          "at://Hello.WORLD/com.example.fooBar#",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar#",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar#",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar#",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/?#",
+			URI:          "at://localhost/com.example.fooBar/?#",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/?#",
+			URI:          "at://example.com/com.example.fooBar/?#",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/?#",
+			URI:          "at://example.com./com.example.fooBar/?#",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/?#",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/?#",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/?#",
+			URI:          "at://Hello.WORLD/com.example.fooBar/?#",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/?#",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/?#",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/?#",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/3jui7kd54zh2y",
+			URI:          "at://localhost/com.example.fooBar/3jui7kd54zh2y",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 			ExpectedRKey:                                    "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/3jui7kd54zh2y",
+			URI:          "at://example.com/com.example.fooBar/3jui7kd54zh2y",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                      "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/3jui7kd54zh2y",
+			URI:          "at://example.com./com.example.fooBar/3jui7kd54zh2y",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 			ExpectedRKey:                                       "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/3jui7kd54zh2y",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/3jui7kd54zh2y",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/3jui7kd54zh2y",
+			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+			ExpectedRKey:                                     "3jui7kd54zh2y",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/3jui7kd54zh2y",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/3jui7kd54zh2y",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 			ExpectedRKey:                                                           "3jui7kd54zh2y",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/3jui7kd54zh2y?",
+			URI:          "at://localhost/com.example.fooBar/3jui7kd54zh2y?",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 			ExpectedRKey:                                    "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/3jui7kd54zh2y?",
+			URI:          "at://example.com/com.example.fooBar/3jui7kd54zh2y?",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                      "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/3jui7kd54zh2y?",
+			URI:          "at://example.com./com.example.fooBar/3jui7kd54zh2y?",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 			ExpectedRKey:                                       "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/3jui7kd54zh2y?",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/3jui7kd54zh2y?",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/3jui7kd54zh2y?",
+			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+			ExpectedRKey:                                     "3jui7kd54zh2y",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/3jui7kd54zh2y?",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y?",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/3jui7kd54zh2y?",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 			ExpectedRKey:                                                           "3jui7kd54zh2y",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/3jui7kd54zh2y#",
+			URI:          "at://localhost/com.example.fooBar/3jui7kd54zh2y#",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 			ExpectedRKey:                                    "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/3jui7kd54zh2y#",
+			URI:          "at://example.com/com.example.fooBar/3jui7kd54zh2y#",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                      "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/3jui7kd54zh2y#",
+			URI:          "at://example.com./com.example.fooBar/3jui7kd54zh2y#",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 			ExpectedRKey:                                       "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/3jui7kd54zh2y#",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/3jui7kd54zh2y#",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/3jui7kd54zh2y#",
+			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y#",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+			ExpectedRKey:                                     "3jui7kd54zh2y",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/3jui7kd54zh2y#",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y#",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/3jui7kd54zh2y#",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 			ExpectedRKey:                                                           "3jui7kd54zh2y",
 		},
 
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
+			URI:          "at://localhost/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 			ExpectedRKey:                                    "3jui7kd54zh2y",
 			ExpectedQuery:                                                 "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
+			URI:          "at://example.com/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                      "3jui7kd54zh2y",
 			ExpectedQuery:                                                   "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
+			URI:          "at://example.com./com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 			ExpectedRKey:                                       "3jui7kd54zh2y",
 			ExpectedQuery:                                                    "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 			ExpectedQuery:                                                           "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
+			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+			ExpectedRKey:                                     "3jui7kd54zh2y",
+			ExpectedQuery:                                                  "once=1&twice=2&thrice=3&fource=4",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 			ExpectedQuery:                                                           "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 			ExpectedRKey:                                                           "3jui7kd54zh2y",
 			ExpectedQuery:                                                                        "once=1&twice=2&thrice=3&fource=4",
 		},
@@ -671,44 +765,51 @@ func TestSplit(t *testing.T) {
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
+			URI:          "at://localhost/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 			ExpectedRKey:                                    "3jui7kd54zh2y",
 			ExpectedQuery:                                                 "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
+			URI:          "at://example.com/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                      "3jui7kd54zh2y",
 			ExpectedQuery:                                                   "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
+			URI:          "at://example.com./com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 			ExpectedRKey:                                       "3jui7kd54zh2y",
 			ExpectedQuery:                                                    "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 			ExpectedQuery:                                                           "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
+			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+			ExpectedRKey:                                     "3jui7kd54zh2y",
+			ExpectedQuery:                                                  "once=1&twice=2&thrice=3&fource=4",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 			ExpectedQuery:                                                           "once=1&twice=2&thrice=3&fource=4",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 			ExpectedRKey:                                                           "3jui7kd54zh2y",
 			ExpectedQuery:                                                                        "once=1&twice=2&thrice=3&fource=4",
 		},
@@ -716,49 +817,57 @@ func TestSplit(t *testing.T) {
 
 
 		{
-			URI:          "at://localhost/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
+			URI:          "at://localhost/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
 			ExpectedAuthority: "localhost",
-			ExpectedCollection:          "com.example.foorBar",
+			ExpectedCollection:          "com.example.fooBar",
 			ExpectedRKey:                                    "3jui7kd54zh2y",
 			ExpectedQuery:                                                 "once=1&twice=2&thrice=3&fource=4",
 			ExpectedFragment:                                                                               "path(/apple/banana/cherry)",
 		},
 		{
-			URI:          "at://example.com/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
+			URI:          "at://example.com/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
 			ExpectedAuthority: "example.com",
-			ExpectedCollection:            "com.example.foorBar",
+			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                      "3jui7kd54zh2y",
 			ExpectedQuery:                                                   "once=1&twice=2&thrice=3&fource=4",
 			ExpectedFragment:                                                                                 "path(/apple/banana/cherry)",
 		},
 		{
-			URI:          "at://example.com./com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
+			URI:          "at://example.com./com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
 			ExpectedAuthority: "example.com.",
-			ExpectedCollection:             "com.example.foorBar",
+			ExpectedCollection:             "com.example.fooBar",
 			ExpectedRKey:                                       "3jui7kd54zh2y",
 			ExpectedQuery:                                                    "once=1&twice=2&thrice=3&fource=4",
 			ExpectedFragment:                                                                                  "path(/apple/banana/cherry)",
 		},
 		{
-			URI:          "at://apple.banana.cherry/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
+			URI:          "at://apple.banana.cherry/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
 			ExpectedAuthority: "apple.banana.cherry",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 			ExpectedQuery:                                                           "once=1&twice=2&thrice=3&fource=4",
 			ExpectedFragment:                                                                                         "path(/apple/banana/cherry)",
 		},
 		{
-			URI:          "at://xn--ugbaf6g.example/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
+			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
+			ExpectedAuthority: "hello.world",
+			ExpectedCollection:            "com.example.fooBar",
+			ExpectedRKey:                                     "3jui7kd54zh2y",
+			ExpectedQuery:                                                  "once=1&twice=2&thrice=3&fource=4",
+			ExpectedFragment:                                                                                "path(/apple/banana/cherry)",
+		},
+		{
+			URI:          "at://xn--ugbaf6g.example/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
 			ExpectedAuthority: "xn--ugbaf6g.example",
-			ExpectedCollection:                    "com.example.foorBar",
+			ExpectedCollection:                    "com.example.fooBar",
 			ExpectedRKey:                                              "3jui7kd54zh2y",
 			ExpectedQuery:                                                           "once=1&twice=2&thrice=3&fource=4",
 			ExpectedFragment:                                                                                         "path(/apple/banana/cherry)",
 		},
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
+			ExpectedCollection:                                 "com.example.fooBar",
 			ExpectedRKey:                                                           "3jui7kd54zh2y",
 			ExpectedQuery:                                                                        "once=1&twice=2&thrice=3&fource=4",
 			ExpectedFragment:                                                                                                      "path(/apple/banana/cherry)",
@@ -767,10 +876,10 @@ func TestSplit(t *testing.T) {
 
 
 		{
-			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/" + strings.Repeat("0123456789ABCDEFGHIJKLMNOPQRSTUV", 256)[len("at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/"):],
+			URI:          "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/" + strings.Repeat("0123456789ABCDEFGHIJKLMNOPQRSTUV", 256)[len("at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/"):],
 			ExpectedAuthority: "did:plc:scewmn2pl3oz36mxme2b6czz",
-			ExpectedCollection:                                 "com.example.foorBar",
-			ExpectedRKey:                                                           "QRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV",
+			ExpectedCollection:                                 "com.example.fooBar",
+			ExpectedRKey:                                                           "PQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV",
 		},
 	}
 
@@ -861,11 +970,11 @@ func TestSplit_fail(t *testing.T) {
 	}{
 		{
 			URI: "at://foo.com/example/123",
-			ExpectedError: `aturi: URI "at://foo.com/example/123" has a collection "example" that is not a valid NSID: nsid: nsid ("example") should have at least 3 segments but actually has 1`,
+			ExpectedError: `aturi: AT-URI "at://foo.com/example/123" has a collection "example" that is not a valid NSID: nsid: nsid ("example") should have at least 3 segments but actually has 1`,
 		},
 		{
 			URI: "at://user:pass@foo.com",
-			ExpectedError: `aturi: URI "at://user:pass@foo.com" may not have an "@" in its authority "user:pass@foo.com"`,
+			ExpectedError: `aturi: AT-URI "at://user:pass@foo.com" may not have an "@" in its authority "user:pass@foo.com"`,
 		},
 
 
@@ -879,70 +988,70 @@ func TestSplit_fail(t *testing.T) {
 
 		{
 			URI: "apple",
-			ExpectedError: `aturi: URI "apple" is not an at-uri because it does not begin with "at://"`,
+			ExpectedError: `aturi: URI "apple" is not an AT-URI because it does not begin with "at:"`,
 		},
 		{
 			URI: "banana",
-			ExpectedError: `aturi: URI "banana" is not an at-uri because it does not begin with "at://"`,
+			ExpectedError: `aturi: URI "banana" is not an AT-URI because it does not begin with "at:"`,
 		},
 		{
 			URI: "cherry",
-			ExpectedError: `aturi: URI "cherry" is not an at-uri because it does not begin with "at://"`,
+			ExpectedError: `aturi: URI "cherry" is not an AT-URI because it does not begin with "at:"`,
 		},
 
 
 
 		{
 			URI: "at",
-			ExpectedError: `aturi: URI "at" is not an at-uri because it does not begin with "at://"`,
+			ExpectedError: `aturi: URI "at" is not an AT-URI because it does not begin with "at:"`,
 		},
 		{
 			URI: "at:",
-			ExpectedError: `aturi: URI "at:" is not an at-uri because it does not begin with "at://"`,
+			ExpectedError: `aturi: AT-URI "at:" is not valid because it does not have "//" after "at:" — too short`,
 		},
 
 
 
 		{
 			URI: "at://",
-			ExpectedError: `aturi: URI "at://" has an empty 'authority'`,
+			ExpectedError: `aturi: AT-URI "at://" has an empty 'authority'`,
 		},
 		{
 			URI: "at:///",
-			ExpectedError: `aturi: URI "at:///" has an empty 'authority'`,
+			ExpectedError: `aturi: AT-URI "at:///" has an empty 'authority'`,
 		},
 		{
 			URI: "at://?",
-			ExpectedError: `aturi: URI "at://?" has an empty 'authority'`,
+			ExpectedError: `aturi: AT-URI "at://?" has an empty 'authority'`,
 		},
 		{
 			URI: "at://#",
-			ExpectedError: `aturi: URI "at://#" has an empty 'authority'`,
+			ExpectedError: `aturi: AT-URI "at://#" has an empty 'authority'`,
 		},
 		{
 			URI: "at://?#",
-			ExpectedError: `aturi: URI "at://?#" has an empty 'authority'`,
+			ExpectedError: `aturi: AT-URI "at://?#" has an empty 'authority'`,
 		},
 
 
 
 		{
 			URI: "at://@",
-			ExpectedError: `aturi: URI "at://@" may not have an "@" in its authority "@"`,
+			ExpectedError: `aturi: AT-URI "at://@" may not have an "@" in its authority "@"`,
 		},
 		{
 			URI: "at://@example",
-			ExpectedError: `aturi: URI "at://@example" may not have an "@" in its authority "@example"`,
+			ExpectedError: `aturi: AT-URI "at://@example" may not have an "@" in its authority "@example"`,
 		},
 		{
 			URI: "at://@example.com",
-			ExpectedError: `aturi: URI "at://@example.com" may not have an "@" in its authority "@example.com"`,
+			ExpectedError: `aturi: AT-URI "at://@example.com" may not have an "@" in its authority "@example.com"`,
 		},
 
 
 
 		{
-			URI: "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/" + strings.Repeat("0123456789ABCDEFGHIJKLMNOPQRSTUV", 256)[len("at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.foorBar/")-1:],
+			URI: "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/" + strings.Repeat("0123456789ABCDEFGHIJKLMNOPQRSTUV", 256)[len("at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/")-1:],
 			ExpectedError: `aturi: URI is 8193 bytes long but an AT-URI may not be more than 8192 bytes long`,
 		},
 	}
