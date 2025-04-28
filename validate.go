@@ -2,7 +2,6 @@ package aturi
 
 import (
 	"github.com/reiver/go-erorr"
-	"github.com/reiver/go-nsid"
 )
 
 // Validate returns an error if the AT-URI is invalid.
@@ -16,8 +15,8 @@ func Validate(uri string) error {
 		return err
 	}
 
-	if err := nsid.Validate(collection); nil != err {
-		return erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
+	if err := ValidateCollection(collection); nil != err {
+		 return erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
 	}
 
 	return nil
