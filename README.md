@@ -24,11 +24,11 @@ import "github.com/reiver/go-aturi"
 
 // ...
 
-var uri string = "at://did:plc:scewmn2pl3oz36mxme2b6czz"
+var atURI string = "at://did:plc:scewmn2pl3oz36mxme2b6czz"
 
 // ...
 
-err := aturi.Validate(uri)
+err := aturi.Validate(atURI)
 ```
 
 ### Split Example
@@ -40,11 +40,29 @@ import "github.com/reiver/go-aturi"
 
 // ...
 
-var uri string = "at://did:plc:scewmn2pl3oz36mxme2b6czz"
+var atURI string = "at://did:plc:scewmn2pl3oz36mxme2b6czz"
 
 // ...
 
-authority, collection, rkey, query, fragment, err := aturi.Split(uri)
+authority, collection, rkey, query, fragment, err := aturi.Split(atURI)
+```
+
+## Join Example
+
+You can create a normalized AT-URI with code similar to the following:
+
+```golang
+import "github.com/reiver/go-aturi"
+
+// ...
+
+var authority  string = "did:plc:scewmn2pl3oz36mxme2b6czz"
+var collection string = "com.example.fooBar"
+var rkey       string = "wxyz1234"
+var query      string = ""
+var fragment   string = ""
+
+var atURI string = aturi.Join(authority, collection, rkey, query, fragment)
 ```
 
 ## Import
