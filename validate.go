@@ -16,10 +16,8 @@ func Validate(uri string) error {
 		return err
 	}
 
-	if 0 < len(collection) {
-		if err := nsid.Validate(collection); nil != err {
-			return erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
-		}
+	if err := nsid.Validate(collection); nil != err {
+		return erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
 	}
 
 	return nil
