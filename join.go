@@ -2,15 +2,14 @@ package aturi
 
 import (
 	"strings"
-
-	"github.com/reiver/go-nsid"
 )
 
 // Join returns the AT-URI made up of the provided 'authority', 'collection', 'rkey', 'query', and 'fragment'.
 //
-// Join normalizes the 'collection' using NSID normalization rules.
+// Join normalizes the 'authority' and 'collection' before joining.
 func Join(authority string, collection string, rkey string, query string, fragment string) string {
-	collection = nsid.Normalize(collection)
+	authority  = NormalizeAuthority(authority)
+	collection = NormalizeCollection(collection)
 
 	return join(authority, collection, rkey, query, fragment)
 }
