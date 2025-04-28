@@ -8,7 +8,7 @@ import (
 	"github.com/reiver/go-aturi"
 )
 
-func TestSplit(t *testing.T) {
+func TestSplitAndNormalize(t *testing.T) {
 
 	tests := []struct{
 		URI string
@@ -26,8 +26,8 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://FOO.Com/COM.Example.foo/123",
-			ExpectedAuthority: "FOO.Com",
-			ExpectedCollection:        "COM.Example.foo",
+			ExpectedAuthority: "foo.com",
+			ExpectedCollection:        "com.example.foo",
 			ExpectedRKey:                              "123",
 		},
 
@@ -70,7 +70,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "AT://Hello.WORLD",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "AT://xn--ugbaf6g.example",
@@ -101,7 +101,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "At://Hello.WORLD",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "At://xn--ugbaf6g.example",
@@ -132,7 +132,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "aT://Hello.WORLD",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "aT://xn--ugbaf6g.example",
@@ -163,7 +163,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example",
@@ -194,7 +194,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example/",
@@ -225,7 +225,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD?",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example?",
@@ -256,7 +256,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example#",
@@ -287,7 +287,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/?",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example/?",
@@ -318,7 +318,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example/#",
@@ -349,7 +349,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD?#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example?#",
@@ -380,7 +380,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/?#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 		},
 		{
 			URI:          "at://xn--ugbaf6g.example/?#",
@@ -415,7 +415,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
@@ -453,7 +453,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
@@ -491,7 +491,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/?",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
@@ -529,7 +529,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
@@ -567,7 +567,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/?#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 		},
 		{
@@ -609,7 +609,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                     "3jui7kd54zh2y",
 		},
@@ -654,7 +654,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                     "3jui7kd54zh2y",
 		},
@@ -699,7 +699,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                     "3jui7kd54zh2y",
 		},
@@ -748,7 +748,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                     "3jui7kd54zh2y",
 			ExpectedQuery:                                                  "once=1&twice=2&thrice=3&fource=4",
@@ -800,7 +800,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                     "3jui7kd54zh2y",
 			ExpectedQuery:                                                  "once=1&twice=2&thrice=3&fource=4",
@@ -856,7 +856,7 @@ func TestSplit(t *testing.T) {
 		},
 		{
 			URI:          "at://Hello.WORLD/com.example.fooBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
-			ExpectedAuthority: "Hello.WORLD",
+			ExpectedAuthority: "hello.world",
 			ExpectedCollection:            "com.example.fooBar",
 			ExpectedRKey:                                     "3jui7kd54zh2y",
 			ExpectedQuery:                                                  "once=1&twice=2&thrice=3&fource=4",
@@ -891,7 +891,7 @@ func TestSplit(t *testing.T) {
 
 	for testNumber, test := range tests {
 
-		actualAuthority, actualCollection, actualRKey, actualQuery, actualFragment, err := aturi.Split(test.URI)
+		actualAuthority, actualCollection, actualRKey, actualQuery, actualFragment, err := aturi.SplitAndNormalize(test.URI)
 
 		if nil != err {
 			t.Errorf("For test #%d, did not expect an error but actually got one.", testNumber)
@@ -968,7 +968,7 @@ func TestSplit(t *testing.T) {
 	}
 }
 
-func TestSplit_fail(t *testing.T) {
+func TestSplitAndNormalize_fail(t *testing.T) {
 
 	tests := []struct{
 		URI string
@@ -1064,7 +1064,7 @@ func TestSplit_fail(t *testing.T) {
 
 	for testNumber, test := range tests {
 
-		_, _, _, _, _, err := aturi.Split(test.URI)
+		_, _, _, _, _, err := aturi.SplitAndNormalize(test.URI)
 
 		if nil == err {
 			t.Errorf("For test #%d, expected an error but did not actually get one.", testNumber)

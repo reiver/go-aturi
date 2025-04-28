@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/reiver/go-erorr"
-	"github.com/reiver/go-nsid"
 )
 
 // Split returns the 'authority', 'collection', 'rkey', 'query', and 'fragment' of at AT-URI.
@@ -26,8 +25,10 @@ import (
 //	// rkey       == "3jui7kd54zh2y"
 //	// query      == ""
 //	// fragment   == ""
+//
+// Split does NOT normalize the returned values.
+// If you are not sure whether to use Split or [SplitAndNormalize], use [SplitAndNormalize].
 func Split(uri string) (authority string, collection string, rkey string, query string, fragment string, err error) {
-
 	if "" == uri {
 		return "", "", "", "", "", errEmptyURI
 	}
@@ -117,8 +118,6 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 			}
 			authority = unescaped
 		}
-
-		authority = NormalizeAuthority(authority)
 	}
 
 	switch str {
@@ -148,12 +147,6 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 			default:
 				collection = str[:index]
 				str = str[index:]
-			}
-
-			if 0 < len(collection) {
-				if err := nsid.Validate(collection); nil != err {
-					return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
-				}
 			}
 		}
 	}
