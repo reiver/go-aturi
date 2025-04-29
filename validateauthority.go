@@ -32,3 +32,19 @@ func ValidateAuthority(authority string) error {
 
 	return nil
 }
+
+func validateAuthority(authority string, uri string) error {
+
+	if err := ValidateAuthority(authority); nil != err {
+		switch {
+		case erorr.Is(err, errEmptyAuthority):
+			return erorr.Errorf("aturi: AT-URI %q has an empty 'authority'", uri)
+		case erorr.Is(err, errAtSignInAuthority):
+			return erorr.Errorf("aturi: AT-URI %q may not have an \"@\" in its authority %q", uri, authority)
+		default:
+			return erorr.Errorf("aturi: AT-URI %q has a authority %q that is not a valid: %w", uri, authority, err)
+		}
+	}
+
+	return nil
+}

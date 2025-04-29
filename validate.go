@@ -11,6 +11,28 @@ import (
 // https://atproto.com/specs/at-uri-scheme
 func Validate(uri string) error {
 
+
+	if err := validate(uri); nil != err {
+		return err
+	}
+
+	authority, collection, _, _, _, err := Split(uri)
+	if nil != err {
+		return err
+	}
+
+	if err := validateAuthority(authority, uri); nil != err {
+		 return err
+	}
+	if err := validateCollection(collection, uri); nil != err {
+		 return err
+	}
+
+	return nil
+}
+
+func validate(uri string) error {
+
 	{
 		const max int = 8192 // == 8 kilobytes == 8 × 1 kilobyte == 8 × 1024 bytes == 8 × 2¹⁰ bytes
 
@@ -19,26 +41,6 @@ func Validate(uri string) error {
 		if max < length {
 			return erorr.Errorf("aturi: URI is %d bytes long but an AT-URI may not be more than %d bytes long", length, max)
 		}
-	}
-
-	authority, collection, _, _, _, err := Split(uri)
-	if nil != err {
-		return err
-	}
-
-	if err := ValidateAuthority(authority); nil != err {
-		switch {
-		case erorr.Is(err, errEmptyAuthority):
-			return erorr.Errorf("aturi: AT-URI %q has an empty 'authority'", uri)
-		case erorr.Is(err, errAtSignInAuthority):
-			return erorr.Errorf("aturi: AT-URI %q may not have an \"@\" in its authority %q", uri, authority)
-		default:
-			return erorr.Errorf("aturi: AT-URI %q has a authority %q that is not a valid: %w", uri, authority, err)
-		}
-	}
-
-	if err := ValidateCollection(collection); nil != err {
-		 return erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
 	}
 
 	return nil

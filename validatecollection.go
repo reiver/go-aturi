@@ -1,6 +1,7 @@
 package aturi
 
 import (
+	"github.com/reiver/go-erorr"
 	"github.com/reiver/go-nsid"
 )
 
@@ -12,6 +13,14 @@ import (
 //
 // An AT-URI collection must be an NSID, and follow its validation rules, as defined at:
 // https://atproto.com/specs/nsid
-func ValidateCollection(value string) error {
-	return nsid.Validate(value)
+func ValidateCollection(collection string) error {
+	return nsid.Validate(collection)
+}
+
+func validateCollection(collection string, uri string) error {
+	if err := ValidateCollection(collection); nil != err {
+		return erorr.Errorf("aturi: AT-URI %q has a collection %q that is not a valid NSID: %w", uri, collection, err)
+	}
+
+	return nil
 }
