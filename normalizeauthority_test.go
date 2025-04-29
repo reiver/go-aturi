@@ -85,6 +85,21 @@ func TestNormalizeAuthority(t *testing.T) {
 			Value:    "ABC😈123",
 			Expected: "abc😈123",
 		},
+
+
+
+		{
+			Value:    "JoeBlow:pass123@Example.COM",
+			Expected: "JoeBlow:pass123@example.com",
+		},
+		{
+			Value:    "@Example.COM",
+			Expected: "@example.com",
+		},
+		{
+			Value:    "JoeBlow:pass123@",
+			Expected: "JoeBlow:pass123@",
+		},
 	}
 
 	for testNumber, test := range tests {

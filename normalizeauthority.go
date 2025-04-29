@@ -20,13 +20,26 @@ func NormalizeAuthority(value string) string {
 		return value
 	}
 
+	var str string = value
+
 	var buffer [256]byte
 	var p []byte = buffer[0:0]
 
-	var length int = len(value)
+	{
+		var index int = strings.Index(str, "@")
+		if 0 <= index {
+			var userinfo string = str[:index]
+			p = append(p, userinfo...)
+			p = append(p, '@')
+
+			str = str[index+1:]
+		}
+	}
+
+	var length int = len(str)
 
 	for i:=0; i<length; i++ {
-		var b byte = value[i]
+		var b byte = str[i]
 
 		switch {
 		case 'A' <= b && b <= 'Z':
