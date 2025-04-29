@@ -6,7 +6,14 @@ import (
 
 // Join returns the AT-URI made up of the provided 'authority', 'collection', 'rkey', 'query', and 'fragment'.
 //
-// Join normalizes the 'authority' and 'collection' before joining.
+// I.e., you use Join to create an AT-URI.
+//
+// Join will take care of the various complexities of properly creating a (normalized) AT-URI.
+//
+// (Most people will set 'query' and 'fragment' to the empty string.)
+//
+// Join normalizes the 'authority' and 'collection' before joining — by calling [NormalizeAuthority] and [NormalizeCollection] respectively.
+// So, you do not need to call [NormalizeAuthority] and [NormalizeCollection] yourself, before passing the 'authority' and 'collection' to Join.
 func Join(authority string, collection string, rkey string, query string, fragment string) string {
 	authority  = NormalizeAuthority(authority)
 	collection = NormalizeCollection(collection)
