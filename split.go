@@ -53,6 +53,16 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 		str = str[lenprefix:]
 	}
 
+	// I.e., if the URI was:
+	//
+	// • "at:"
+	// • "aT:"
+	// • "At:"
+	// • "AT:"
+	if "" == str {
+		return "", "", "", "", "", nil
+	}
+
 	{
 		const prefix string = "//"
 
