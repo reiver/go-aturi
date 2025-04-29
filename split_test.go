@@ -34,6 +34,21 @@ func TestSplit(t *testing.T) {
 
 
 		{
+			URI: "at:",
+		},
+		{
+			URI: "aT:",
+		},
+		{
+			URI: "At:",
+		},
+		{
+			URI: "AT:",
+		},
+
+
+
+		{
 			URI: "at://",
 		},
 		{
@@ -1040,10 +1055,6 @@ func TestSplit_fail(t *testing.T) {
 		{
 			URI: "at",
 			ExpectedError: `aturi: URI "at" is not an AT-URI because it does not begin with "at:"`,
-		},
-		{
-			URI: "at:",
-			ExpectedError: `aturi: AT-URI "at:" is not valid because it does not have "//" after "at:" — too short`,
 		},
 	}
 
