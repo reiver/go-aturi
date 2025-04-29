@@ -11,7 +11,6 @@ import (
 // https://atproto.com/specs/at-uri-scheme
 func Validate(uri string) error {
 
-
 	if err := validate(uri); nil != err {
 		return err
 	}
@@ -24,14 +23,20 @@ func Validate(uri string) error {
 	if err := validateAuthority(authority, uri); nil != err {
 		 return err
 	}
-	if err := validateCollection(collection, uri); nil != err {
-		 return err
+	if "" != collection {
+		if err := validateCollection(collection, uri); nil != err {
+			 return err
+		}
 	}
 
 	return nil
 }
 
 func validate(uri string) error {
+
+	if "" == uri {
+		return errEmptyURI
+	}
 
 	{
 		const max int = 8192 // == 8 kilobytes == 8 × 1 kilobyte == 8 × 1024 bytes == 8 × 2¹⁰ bytes
