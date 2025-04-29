@@ -34,6 +34,47 @@ func TestSplit(t *testing.T) {
 
 
 		{
+			URI: "at://",
+		},
+		{
+			URI: "at:///",
+		},
+		{
+			URI: "at://?",
+		},
+		{
+			URI: "at://#",
+		},
+		{
+			URI: "at://?#",
+		},
+
+
+
+		{
+			URI:          "at://user:pass@foo.com",
+			ExpectedAuthority: "user:pass@foo.com",
+		},
+		{
+			URI:          "at://user:pass@Foo.COM",
+			ExpectedAuthority: "user:pass@Foo.COM",
+		},
+		{
+			URI:          "at://@",
+			ExpectedAuthority: "@",
+		},
+		{
+			URI:          "at://@example",
+			ExpectedAuthority: "@example",
+		},
+		{
+			URI:          "at://@example.com",
+			ExpectedAuthority: "@example.com",
+		},
+
+
+
+		{
                         URI:          "at://1%2F2",
                         ExpectedAuthority: "1/2",
 		},
@@ -975,17 +1016,6 @@ func TestSplit_fail(t *testing.T) {
 		ExpectedError string
 	}{
 		{
-			URI: "at://foo.com/example/123",
-			ExpectedError: `aturi: AT-URI "at://foo.com/example/123" has a collection "example" that is not a valid NSID: nsid: nsid ("example") should have at least 3 segments but actually has 1`,
-		},
-		{
-			URI: "at://user:pass@foo.com",
-			ExpectedError: `aturi: AT-URI "at://user:pass@foo.com" may not have an "@" in its authority "user:pass@foo.com"`,
-		},
-
-
-
-		{
 			URI: "",
 			ExpectedError: `aturi: empty URI`,
 		},
@@ -1014,51 +1044,6 @@ func TestSplit_fail(t *testing.T) {
 		{
 			URI: "at:",
 			ExpectedError: `aturi: AT-URI "at:" is not valid because it does not have "//" after "at:" — too short`,
-		},
-
-
-
-		{
-			URI: "at://",
-			ExpectedError: `aturi: AT-URI "at://" has an empty 'authority'`,
-		},
-		{
-			URI: "at:///",
-			ExpectedError: `aturi: AT-URI "at:///" has an empty 'authority'`,
-		},
-		{
-			URI: "at://?",
-			ExpectedError: `aturi: AT-URI "at://?" has an empty 'authority'`,
-		},
-		{
-			URI: "at://#",
-			ExpectedError: `aturi: AT-URI "at://#" has an empty 'authority'`,
-		},
-		{
-			URI: "at://?#",
-			ExpectedError: `aturi: AT-URI "at://?#" has an empty 'authority'`,
-		},
-
-
-
-		{
-			URI: "at://@",
-			ExpectedError: `aturi: AT-URI "at://@" may not have an "@" in its authority "@"`,
-		},
-		{
-			URI: "at://@example",
-			ExpectedError: `aturi: AT-URI "at://@example" may not have an "@" in its authority "@example"`,
-		},
-		{
-			URI: "at://@example.com",
-			ExpectedError: `aturi: AT-URI "at://@example.com" may not have an "@" in its authority "@example.com"`,
-		},
-
-
-
-		{
-			URI: "at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/" + strings.Repeat("0123456789ABCDEFGHIJKLMNOPQRSTUV", 256)[len("at://did:plc:scewmn2pl3oz36mxme2b6czz/com.example.fooBar/")-1:],
-			ExpectedError: `aturi: URI is 8193 bytes long but an AT-URI may not be more than 8192 bytes long`,
 		},
 	}
 

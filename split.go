@@ -33,16 +33,6 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 		return "", "", "", "", "", errEmptyURI
 	}
 
-	{
-		const max int = 8192 // == 8 kilobytes == 8 × 1 kilobyte == 8 × 1024 bytes == 8 × 2¹⁰ bytes
-
-		var length int = len(uri)
-
-		if max < length {
-			return "", "", "", "", "", erorr.Errorf("aturi: URI is %d bytes long but an AT-URI may not be more than %d bytes long", length, max)
-		}
-	}
-
 	var str string = uri
 
 	{
@@ -97,18 +87,6 @@ func Split(uri string) (authority string, collection string, rkey string, query 
 		default:
 			authority = str[:index]
 			str = str[index:]
-		}
-
-		if "" == authority {
-			return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q has an empty 'authority'", uri)
-		}
-
-		{
-			const disallowed string = "@"
-
-			if strings.Contains(authority, disallowed) {
-				return "", "", "", "", "", erorr.Errorf("aturi: AT-URI %q may not have an %q in its authority %q", uri, disallowed, authority)
-			}
 		}
 
 		{
