@@ -20,7 +20,7 @@ package aturi
 //	// fragment   == ""
 //
 // SplitAndNormalize normalizes the returned values.
-// If you are not sure whether to use [Split] or SpliAndNormalize, use SplitAndNormalize.
+// If you are not sure whether to use [Split] or SpliAndNormalize or [SplitAndNormalizeAndValidate], use [SplitAndNormalizeAndValidate].
 func SplitAndNormalize(uri string) (authority string, collection string, rkey string, query string, fragment string, err error) {
 	authority, collection, rkey, query, fragment, err = Split(uri)
 

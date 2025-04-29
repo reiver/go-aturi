@@ -27,7 +27,7 @@ import (
 //	// fragment   == ""
 //
 // Split does NOT normalize the returned values.
-// If you are not sure whether to use Split or [SplitAndNormalize], use [SplitAndNormalize].
+// If you are not sure whether to use Split or [SplitAndNormalize] or [SplitAndNormalizeAndValidate], use [SplitAndNormalizeAndValidate].
 func Split(uri string) (authority string, collection string, rkey string, query string, fragment string, err error) {
 	if "" == uri {
 		return "", "", "", "", "", errEmptyURI
