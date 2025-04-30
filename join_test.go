@@ -406,6 +406,19 @@ func TestJoin(t *testing.T) {
 			Fragment:                                                                                     "path(/apple/banana/cherry)",
 			Expected: "at://archive.org/com.example.foorBar/3jui7kd54zh2y?once=1&twice=2&thrice=3&fource=4#path(/apple/banana/cherry)",
 		},
+
+
+
+
+
+
+
+
+
+		{
+			Authority:     "JoeBlow:Pass123@Archive.ORG",
+			Expected: "at://archive.org",
+		},
 	}
 
 	for testNumber, test := range tests {

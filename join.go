@@ -12,9 +12,13 @@ import (
 //
 // (Most people will set 'query' and 'fragment' to the empty string.)
 //
-// Join normalizes the 'authority' and 'collection' before joining — by calling [NormalizeAuthority] and [NormalizeCollection] respectively.
+// Join normalizes the 'authority' and 'collection' before joining — by internally calling [NormalizeAuthority] and [NormalizeCollection] respectively.
 // So, you do not need to call [NormalizeAuthority] and [NormalizeCollection] yourself, before passing the 'authority' and 'collection' to Join.
+//
+// Join also sanitizes 'authority' before joining — by internally calling [SanitizeAuthority].
 func Join(authority string, collection string, rkey string, query string, fragment string) string {
+	authority = SanitizeAuthority(authority)
+
 	authority  = NormalizeAuthority(authority)
 	collection = NormalizeCollection(collection)
 
