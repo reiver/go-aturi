@@ -148,3 +148,70 @@ func TestValidateScheme(t *testing.T) {
 		}
 	}
 }
+
+func TestValidateScheme_fail(t *testing.T) {
+
+	tests := []struct{
+		URI string
+		ExpectedError string
+	}{
+		{
+			URI: "",
+			ExpectedError: `aturi: empty URI`,
+		},
+
+
+
+		{
+			URI: "a",
+			ExpectedError: `aturi: URI "a" is not an AT-URI because it does not begin with "at:"`,
+		},
+
+
+
+		{
+			URI: "at",
+			ExpectedError: `aturi: URI "at" is not an AT-URI because it does not begin with "at:"`,
+		},
+		{
+			URI: "aT",
+			ExpectedError: `aturi: URI "aT" is not an AT-URI because it does not begin with "at:"`,
+		},
+		{
+			URI: "At",
+			ExpectedError: `aturi: URI "At" is not an AT-URI because it does not begin with "at:"`,
+		},
+		{
+			URI: "AT",
+			ExpectedError: `aturi: URI "AT" is not an AT-URI because it does not begin with "at:"`,
+		},
+
+
+
+		{
+			URI: "http://example.com",
+			ExpectedError: `aturi: URI "http://example.com" is not an AT-URI because it does not begin with "at:"`,
+		},
+	}
+
+	for testNumber, test := range tests {
+
+		err := aturi.ValidateScheme(test.URI)
+		if nil == err {
+			t.Errorf("For test #%d, expected an error but did not actually get one.", testNumber)
+			t.Logf("URI: %s", test.URI)
+			continue
+		}
+
+		actual := err.Error()
+		expected := test.ExpectedError
+
+		if expected != actual {
+			t.Errorf("For test #%d, the actual error is not what was expected.", testNumber)
+			t.Logf("EXPECTED-ERROR: %s", expected)
+			t.Logf("ACTUAL-ERROR:   %s", actual)
+			t.Logf("URI: %s", test.URI)
+			continue
+		}
+	}
+}
