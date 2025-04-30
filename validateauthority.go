@@ -11,8 +11,10 @@ const (
 	errAtSignInAuthority = erorr.Error("aturi: authority may not have an \"@\" in it")
 )
 
-// ValidateAuthority returns an error if the AT-URI authority is invalid.
+// ValidateAuthority returns an error if the AT-URI 'authority' is invalid.
 // It returns nil if the AT-URI authority is valid.
+//
+// NOTE THAT THIS IS NOT VALIDATING AN AT-URI, BUT IS INSTEAD VALIDATING AN AT-URI 'authority'.
 //
 // The validation rules for an AT-URI are defined here:
 // https://atproto.com/specs/at-uri-scheme
