@@ -4,17 +4,19 @@ import (
 	"strings"
 )
 
-// NormalizeAuthority returns the normalized form of an AT-URI authority, as defined in:
+// NormalizeAuthority returns the normalized form of an AT-URI 'authority', as defined in:
 // https://atproto.com/specs/at-uri-scheme
 //
-// The AT-URI authority (such as "example.com") is part of an AT-URI (such as "at://example.com").
+// The AT-URI 'authority' (such as "example.com") is part of an AT-URI (such as "at://example.com").
 //
-// In simple language, you can think of an AT-URI authority as being either an Internet domain-name (ex: "example.com") or a DID (ex: "did:plc:scewmn2pl3oz36mxme2b6czz").
+// In simple language, you can think of an AT-URI 'authority' as being either an Internet domain-name (ex: "example.com") or a DID (ex: "did:plc:scewmn2pl3oz36mxme2b6czz").
 //
-// An example of a non-normalized AT-URI authority would be "Example.COM".
-// Normalizing that non-normalized AT-URI authority would result in "example.com".
+// An example of a non-normalized AT-URI 'authority' would be "Example.COM".
+// Normalizing that non-normalized AT-URI 'authority' would result in "example.com".
 //
-// Note that if you want to normalize a whole AT-URI rather than just an authority, then instead use [Normalize].
+// NormalizeAuthority will leave any potential 'userinfo' in the 'authority' as is.
+//
+// Note that if you want to normalize a whole AT-URI rather than just an 'authority', then instead use [Normalize].
 func NormalizeAuthority(value string) string {
 	if strings.HasPrefix(value, "did:") {
 		return value
