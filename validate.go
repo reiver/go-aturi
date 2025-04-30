@@ -5,6 +5,15 @@ package aturi
 //
 // The validation rules for an AT-URI are defined here:
 // https://atproto.com/specs/at-uri-scheme
+//
+// To validate a potential AT-URI more liberally, use one of the following:
+// [ValidateGenerically],
+// [ValidatePrefix],
+// [ValidateScheme].
+//
+// To validate only the 'authority' and NOT the whole AT-URI, use [NormalizeAuthority].
+//
+// To validate only the 'collection' and NOT the whole AT-URI, use [NormalizeCollection].
 func Validate(uri string) error {
 
 	if err := ValidateGenerically(uri); nil != err {
