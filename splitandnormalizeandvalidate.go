@@ -28,11 +28,7 @@ func SplitAndNormalizeAndValidate(uri string) (authority string, collection stri
 		return "", "", "", "", "", err
 	}
 
-	authority, collection, rkey, query, fragment, err = Split(uri)
-
-	authority  = NormalizeAuthority(authority)
-	collection = NormalizeCollection(collection)
-
+	authority, collection, rkey, query, fragment, err = SplitAndNormalize(uri)
 	if nil != err {
 		return authority, collection, rkey, query, fragment, err
 	}
