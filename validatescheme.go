@@ -9,7 +9,7 @@ import (
 const schemePrefix string = "at:"
 const lenSchemePrefix int = len(schemePrefix)
 
-// ValidateScheme only validates the scheme of an URI.
+// ValidateScheme only validates the scheme of a potential AT-URI.
 //
 // So, it checks to see if the URI starts with "at:".
 // And, that is it.
