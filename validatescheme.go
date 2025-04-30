@@ -6,6 +6,9 @@ import (
 	"github.com/reiver/go-erorr"
 )
 
+const schemePrefix string = "at:"
+const lenSchemePrefix int = len(schemePrefix)
+
 // ValidateScheme only validates the scheme of an URI.
 //
 // So, it checks to see if the URI starts with "at:".
@@ -19,18 +22,15 @@ func ValidateScheme(uri string) error {
 	}
 
 	{
-		const prefix string = "at:"
-		const lenprefix int = len(prefix)
-
 		var lenuri int = len(uri)
-		if lenuri < lenprefix {
-			return erorr.Errorf("aturi: URI %q is not an AT-URI because it does not begin with %q", uri, prefix)
+		if lenuri < lenSchemePrefix {
+			return erorr.Errorf("aturi: URI %q is not an AT-URI because it does not begin with %q", uri, schemePrefix)
 		}
 
-                var beginning string = uri[:lenprefix]
+                var beginning string = uri[:lenSchemePrefix]
 
-                if strings.ToLower(beginning) != prefix {
-			return erorr.Errorf("aturi: URI %q is not an AT-URI because it does not begin with %q", uri, prefix)
+                if strings.ToLower(beginning) != schemePrefix {
+			return erorr.Errorf("aturi: URI %q is not an AT-URI because it does not begin with %q", uri, schemePrefix)
                 }
 	}
 

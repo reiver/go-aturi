@@ -34,8 +34,8 @@ func Validate(uri string) error {
 
 func validate(uri string) error {
 
-	if "" == uri {
-		return errEmptyURI
+	if err := ValidatePrefix(uri); nil != err {
+		return err
 	}
 
 	{
