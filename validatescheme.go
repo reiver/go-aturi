@@ -14,6 +14,9 @@ const lenSchemePrefix int = len(schemePrefix)
 // So, it checks to see if the URI starts with "at:".
 // And, that is it.
 //
+// You would use ValidateScheme if you wanted to be very liberal in what you accept as a valid AT-URI, including not caring if the AT-URI has an 'authority' or not.
+// I.e., this is the minimum amount of validation you can do to validate an AT-URI.
+//
 // For more thorough validation of the whole AT-URI instead use [Validate].
 func ValidateScheme(uri string) error {
 
