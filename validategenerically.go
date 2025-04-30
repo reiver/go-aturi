@@ -4,6 +4,14 @@ import (
 	"github.com/reiver/go-erorr"
 )
 
+// ValidateGenerically only validates an AT-URI in a very general form.
+//
+// So, it checks to see if the URI starts with "at://", and make sure that the AT-URI is not more than 8192 bytes long (i.e., 8 kilobytes long).
+// And, that is it.
+//
+// ValidateGenerically calls [ValidatePrefix] internally.
+//
+// For more thorough validation of the whole AT-URI instead use [Validate].
 func ValidateGenerically(uri string) error {
 
 	if err := ValidatePrefix(uri); nil != err {
