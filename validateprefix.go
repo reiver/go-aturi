@@ -9,9 +9,11 @@ import (
 // So, it checks to see if the URI starts with "at://".
 // And, that is it.
 //
+// You would use ValidatePrefix if you wanted to be very liberal in what you accept as a valid AT-URI.
+//
 // ValidatePrefix calls [ValidateScheme] internally.
 //
-// For more thorough validation of the whole AT-URI instead use [Validate].
+// For a more thorough validation of the whole AT-URI instead use [Validate].
 func ValidatePrefix(uri string) error {
 
 	if err := ValidateScheme(uri); nil != err {
