@@ -416,8 +416,15 @@ func TestJoin(t *testing.T) {
 
 
 		{
-			Authority:     "JoeBlow:Pass123@Archive.ORG",
-			Expected: "at://archive.org",
+			Authority: "JoeBlow:Pass123@Archive.ORG",
+			Expected:             "at://archive.org",
+		},
+
+
+
+		{
+			Authority: "JoeBlow:Pass123@😈.ORG",
+			Expected:             "at://xn--m28h.org",
 		},
 	}
 

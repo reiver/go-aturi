@@ -2,6 +2,8 @@ package aturi
 
 import (
 	"strings"
+
+	"golang.org/x/net/idna"
 )
 
 // Join returns the AT-URI made up of the provided 'authority', 'collection', 'rkey', 'query', and 'fragment'.
@@ -33,6 +35,13 @@ func join(authority string, collection string, rkey string, query string, fragme
 	p = append(p, "at://"...)
 
 	if "" != authority {
+		{
+			punycode, err := idna.ToASCII(authority)
+			if nil == err {
+				authority = punycode
+			}
+		}
+
 		p = append(p, encodeAtSign(encodeSolidus(encodeQuestionMark(encodeNumberSign(encodePercentSign(authority)))))...)
 	}
 
