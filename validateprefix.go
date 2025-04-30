@@ -4,7 +4,7 @@ import (
 	"github.com/reiver/go-erorr"
 )
 
-// ValidatePreix only validates the prefix (i.e., "at://") of an AT-URI.
+// ValidatePrefix only validates the prefix (i.e., "at://") of an AT-URI.
 //
 // So, it checks to see if the URI starts with "at://".
 // And, that is it.
