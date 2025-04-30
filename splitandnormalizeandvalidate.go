@@ -24,7 +24,7 @@ package aturi
 //
 // If you are not sure whether to use [Split] or [SpliAndNormalize] or SplitAndNormalizeAndValidate, use SplitAndNormalizeAndValidate.
 func SplitAndNormalizeAndValidate(uri string) (authority string, collection string, rkey string, query string, fragment string, err error) {
-	if err := validate(uri); nil != err {
+	if err := ValidateGenerically(uri); nil != err {
 		return "", "", "", "", "", err
 	}
 

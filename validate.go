@@ -1,9 +1,5 @@
 package aturi
 
-import (
-	"github.com/reiver/go-erorr"
-)
-
 // Validate returns an error if the AT-URI is invalid.
 // It returns nil if the AT-URI is valid.
 //
@@ -11,7 +7,7 @@ import (
 // https://atproto.com/specs/at-uri-scheme
 func Validate(uri string) error {
 
-	if err := validate(uri); nil != err {
+	if err := ValidateGenerically(uri); nil != err {
 		return err
 	}
 
@@ -26,25 +22,6 @@ func Validate(uri string) error {
 	if "" != collection {
 		if err := validateCollection(collection, uri); nil != err {
 			 return err
-		}
-	}
-
-	return nil
-}
-
-func validate(uri string) error {
-
-	if err := ValidatePrefix(uri); nil != err {
-		return err
-	}
-
-	{
-		const max int = 8192 // == 8 kilobytes == 8 × 1 kilobyte == 8 × 1024 bytes == 8 × 2¹⁰ bytes
-
-		var length int = len(uri)
-
-		if max < length {
-			return erorr.Errorf("aturi: URI is %d bytes long but an AT-URI may not be more than %d bytes long", length, max)
 		}
 	}
 
