@@ -2,6 +2,8 @@ package aturi
 
 import (
 	"strings"
+
+	"github.com/reiver/go-did"
 )
 
 // NormalizeAuthority returns the normalized form of an AT-URI 'authority', as defined in:
@@ -18,7 +20,7 @@ import (
 //
 // Note that if you want to normalize a whole AT-URI rather than just an 'authority', then instead use [Normalize].
 func NormalizeAuthority(value string) string {
-	if strings.HasPrefix(value, "did:") {
+	if nil == did.ValidateScheme(value) {
 		return value
 	}
 
