@@ -8,11 +8,11 @@ import (
 
 func ExampleNormalizeCollection() {
 
-	var authority string = "COM.Example.fooBar"
+	var collection string = "COM.Example.fooBar"
 
-	normalizedCollection := aturi.NormalizeCollection(authority)
+	normalizedCollection := aturi.NormalizeCollection(collection)
 
-	fmt.Printf("original collection:   %s\n", authority)
+	fmt.Printf("original collection:   %s\n", collection)
 	fmt.Printf("normalized collection: %s\n", normalizedCollection)
 
 	// Output:
