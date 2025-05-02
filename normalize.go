@@ -10,7 +10,7 @@ package aturi
 //
 //	at://VIDEO.archive.ORG/COM.Example.fooBar
 //
-// Normalizing that non-normalized AT-URI domain-authority would result in:
+// Normalizing that non-normalized AT-URI would result in:
 //
 //	at://video.archive.org/com.example.fooBar
 func Normalize(uri string) string {
