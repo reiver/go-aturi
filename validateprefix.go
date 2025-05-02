@@ -12,7 +12,7 @@ import (
 // You would use ValidatePrefix if you wanted to be very liberal in what you accept as a valid AT-URI, including accepting an empty 'authority'.
 // I.e., this does a bit more than [ValidatePrefix].
 //
-// ValidatePrefix calls [ValidatePrefix] internally.
+// ValidatePrefix calls [ValidateScheme] internally.
 //
 // For a more thorough validation of the whole AT-URI instead use [Validate].
 //
