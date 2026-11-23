@@ -93,6 +93,7 @@ Package **aturi** was written by [Charles Iliya Krempeaux](http://reiver.link)
 * https://github.com/reiver/go-cid
 * https://github.com/reiver/go-did
 * https://github.com/reiver/go-didplc
+* https://github.com/reiver/go-didweb
 * https://github.com/reiver/go-drisl
 * https://github.com/reiver/go-lthash
 * https://github.com/reiver/go-nsid
